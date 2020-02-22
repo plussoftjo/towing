@@ -85,7 +85,13 @@ class OrderController extends Controller
         if($order == 0) {
             return response()->json(['has' => false]);
         }else {
-            return response()->json(['has' => true]);
+            $val = order::where('uuid',$request->uuid)->value('driver_id');
+
+            if($val == $request->driver_id) {
+                return response()->json(['has' => false]);
+            }else {
+                return response()->json(['has' => true]);
+            }
         }
     }
 }
