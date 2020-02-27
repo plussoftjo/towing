@@ -65,6 +65,7 @@ Route::post('helper/notification/update','Api\Driver\AuthController@update_token
 /** Driver App settings */
 Route::post('settings/user/change_image','Api\Driver\UserController@change_image');//update avatar
 Route::post('settings/user/update_user','Api\Driver\UserController@update_user');//update user stander details
+Route::post('settings/user/update_password','Api\Driver\UserController@update_password');//update user stander details
 
 
 /** Authed Controller */

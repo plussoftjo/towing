@@ -29,4 +29,15 @@ class UserController extends Controller
             'phone' => $request->phone
         ]);
     }
+
+    public function update_password(Request $request) {
+        $input = $request->all();
+        if(Auth::attempt(['phone' => $input['phone'],'password' => $input['password']])) {
+            User::where('id',$request->user_id)->update([
+                'password' => bcrypt($request->password)
+            ]);
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false]);
+    }
 }
