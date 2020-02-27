@@ -14,12 +14,19 @@ class UserController extends Controller
     public function change_image(Request $request) {
         $image = 'data:image/jpg;base64,'.$request->get('image');
         $imageName = Carbon::now()->timestamp . uniqid() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-        Image::make($image)->save(public_path(('images/driver/avatar/').$imageName));
-
+        Image::make($image)->rotate(90)->save(public_path(('images/driver/avatar/').$imageName));
         User::where('id',$request->user_id)->update([
             'avatar' => 'images/driver/avatar/'.$imageName
         ]);
 
         return response()->json(['image' => 'images/driver/avatar/'.$imageName]);
+    }
+
+    /** Change stander user information */
+    public function update_user(Request $request) {
+        User::where('id',$request->user_id)->update([
+            'name' => $request->name,
+            'phone' => $request->phone
+        ]);
     }
 }
