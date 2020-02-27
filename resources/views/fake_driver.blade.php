@@ -1,20 +1,31 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('voyager::master')
 
-        <title>Fake Driver</title>
+@section('page_title', __('hello'))
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="stylesheet" href="css/app.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+@section('content')
+    <div class="page-content container-fluid">
+        @include('voyager::alerts')
+        <div class="row">
+            <div class="col-md-12">
+                <div id="faked">
+                    @{{count}}
+                </div>
+            </div><!-- .row -->
+        </div><!-- .col-md-12 -->
+    </div><!-- .page-content container-fluid -->
+@stop
 
-    </head>
-    <body>
-       <div id="app">
-       </div>
-        <script src="js/app.js"></script>
-    </body>
-</html>
+@section('javascript')
+<script>
+    import view from './test/view.vue'
+    new Vue({
+        el: '#faked',
+        data() {
+            return {
+                count:0
+            }
+        },
+        components:{view}
+    });
+</script>
+@endsection

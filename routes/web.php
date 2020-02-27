@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::get('/fake_driver',function() {
-    return view('fake_driver');
-});
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

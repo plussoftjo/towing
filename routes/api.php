@@ -58,6 +58,14 @@ Route::post('wallet/update_wallet','Api\Driver\AuthController@update_wallet');
 
 Route::post('helper/image/store','Api\imageController@store');
 Route::post('helper/notification/update','Api\Driver\AuthController@update_token');
+
+
+
+
+/** Driver App settings */
+Route::post('settings/user/change_image','Api\Driver\UserController@change_image');
+
+
 /** Authed Controller */
 
 Route::group(['middleware' => 'auth:api'], function(){
