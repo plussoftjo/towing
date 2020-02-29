@@ -36,8 +36,8 @@ class UserController extends Controller
             User::where('id',$request->user_id)->update([
                 'password' => bcrypt($request->password)
             ]);
-            return response()->json(['success' => true]);
+            return response()->json(['success' => true],200);
         }
-        return response()->json(['success' => false]);
+        return response()->json(['success' => false],401);
     }
 }
